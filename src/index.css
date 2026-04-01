@@ -1,0 +1,23 @@
+:root {
+  --fondo-imagen: url('https://i.idol.st/u/background/rLfvxpBackground-BS2TCG.png');
+}
+
+html,
+body {
+  overflow: hidden;
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background-color: #ced8e4;
+  background-image: var(--fondo-imagen);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
+}

@@ -1,0 +1,26 @@
+.home {
+    display: flex;
+    justify-content: flex-end;
+}
+.box{
+    padding-right: 15px;
+    display: flex;
+}
+.character {
+    z-index: 1;
+    position: absolute;
+    width: 90%;
+    clip-path: inset(0 0 90px 0); 
+    left: -25vw;
+    bottom: -5vw;
+}
+.iz, .der {
+    z-index: 2;
+    width: 200px;
+}
+.iz:hover, .der:hover {
+    transform: scale(1.08);
+}
+.cuadro{
+    width: 65%;
+}

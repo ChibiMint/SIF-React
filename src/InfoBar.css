@@ -1,0 +1,6 @@
+.InfoBar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: border-box;
+}
