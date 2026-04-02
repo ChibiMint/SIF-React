@@ -19,6 +19,7 @@
     width: 200px;
 }
 .iz:hover, .der:hover {
+    filter: brightness(1.5);
     transform: scale(1.08);
 }
 .cuadro{
