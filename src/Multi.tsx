@@ -1,33 +1,50 @@
 import './Multi.css'
-import t1 from './assets/t1.svg'
-import t2 from './assets/t2.svg'
+import { useMultimedia } from './MultimediaContext'
 
+const GRUPOS = ["μ's", 'Aquors', 'Nijigasaki', 'Liella', 'Hasu no sora', 'Ikizu', 'Musical'] as const
+const CATEGORIAS = ['Anime', 'Musica', 'Conciertos', 'Libros', 'Extras'] as const
+
+/** Barra de filtros: al pulsar grupo/categoría se actualiza el contexto que consume Swipe; “Filtros” limpia la selección. */
 export default function Multi() {
-    return (
-        <div className="songs">
-        <div className="grupos">
-            <div className="grupo"> <p>μ’s</p> </div>
-            <div className="grupo"> <p>Aquors</p> </div>
-            <div className="grupo"> <p>Nijigasaki</p> </div>
-            <div className="grupo"> <p>Liella</p> </div>
-            <div className="grupo"> <p>Hasu no sora</p> </div>
-            <div className="grupo"> <p>Ikizu</p> </div>
-            <div className="grupo"> <p>Musical</p> </div>
+  const {
+    selectedGroup,
+    setSelectedGroup,
+    selectedCategory,
+    setSelectedCategory,
+    resetFilters,
+  } = useMultimedia()
+
+  return (
+    <div className="songs">
+      <div className="grupos">
+        {GRUPOS.map((g) => (
+          <div
+            key={g}
+            className={`grupo ${selectedGroup === g ? 'active' : ''}`}
+            onClick={() => setSelectedGroup(selectedGroup === g ? null : g)}
+            role="button"
+            tabIndex={0}
+          >
+            <p>{g}</p>
+          </div>
+        ))}
+      </div>
+      <div className="categorias">
+        {CATEGORIAS.map((c) => (
+          <div
+            key={c}
+            className={`categoria ${selectedCategory === c ? 'active' : ''}`}
+            onClick={() => setSelectedCategory(selectedCategory === c ? null : c)}
+            role="button"
+            tabIndex={0}
+          >
+            <p>{c}</p>
+          </div>
+        ))}
+        <div className="filtro" onClick={resetFilters} role="button" tabIndex={0}>
+          <p>Filtros</p>
         </div>
-        <div className="categorias">
-            <div className="categoria"><p>Anime</p></div>
-            <div className="categoria"><p>Musica</p></div>
-            <div className="categoria"><p>Conciertos</p></div>
-            <div className="categoria"><p>Libros</p></div>
-            <div className="categoria"><p>Extras</p></div>
-            <div className="filtro"><p>Filtros</p></div>
-        </div>
-        <div className="container">
-            <img src={t1} className='buttomS1' alt="prevBtn" height={100} />
-            <img src={t2} className='buttomS2' alt="nextBtn" height={100} />
-           
-           </div>
-        <div className="informacion"><p>LoveLive! Series 9th Anniversary Love Live! Fest</p></div>
-        </div>
-    )
+      </div>
+    </div>
+  )
 }

@@ -1,0 +1,20 @@
+{
+    "sections":[
+        {
+            "Name": "Love live! the school idol project!",
+            "Grup": "μ's",
+            "Image":"https://m.media-amazon.com/images/M/MV5BMWQ5NDBjNzMtNmEwZC00MGY0LWJjN2QtMWQzMjliOGUwMzY4XkEyXkFqcGc@._V1_.jpg"},
+        {
+          "Name": "Love live! Sunshine!!",
+            "Grup": "Aquors",
+            "Image":"https://images.justwatch.com/poster/253937608/s718/love-live-sunshine.jpg"},
+        {
+           "Name": "Love live! Nijigasaki High School Idol Club",
+            "Grup": "Nijigasaki",
+            "Image":"https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/e48baf35cb5ae569639980e9c9698b43.jpg"},
+        {
+            "Name": "Love live! Superstar!!",
+            "Grup": "Liella",
+            "Image":"https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/13b871ba35288b6a2722ae26b01e7447.jpg"}
+    ]
+}

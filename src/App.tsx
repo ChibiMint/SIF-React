@@ -1,9 +1,11 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { MultimediaProvider } from './MultimediaContext'
 import './App.css'
 import Bar from './Bar'
 import Home from './Home'
 import InfoBar from './InfoBar'
 import Multi from './Multi'
+import Swipe from './Swipe'
 
 export default function App() {
   return (
@@ -16,7 +18,14 @@ export default function App() {
         </>
         }
         />
-        <Route path='/multimedia' element= {<Multi/>}/>
+        {/* MultimediaProvider comparte estado de filtros entre Multi y Swipe en esta ruta. */}
+        <Route path='/multimedia' element= {
+          <MultimediaProvider>
+          <Multi/>
+          <Swipe/>
+          </MultimediaProvider>
+          }
+          />
         <Route path='*' element={<Navigate to="/" replace />}/>
     </Routes>
     <Bar/>
