@@ -19,13 +19,19 @@ export default function App() {
         }
         />
         {/* MultimediaProvider comparte estado de filtros entre Multi y Swipe en esta ruta. */}
-        <Route path='/multimedia' element= {
-          <MultimediaProvider>
-          <Multi/>
-          <Swipe/>
-          </MultimediaProvider>
+        <Route
+          path="/multimedia"
+          element={
+            <MultimediaProvider>
+              <div className="multimedia-page">
+                <Multi />
+                <main className="multimedia-swipe-mount">
+                  <Swipe />
+                </main>
+              </div>
+            </MultimediaProvider>
           }
-          />
+        />
         <Route path='*' element={<Navigate to="/" replace />}/>
     </Routes>
     <Bar/>

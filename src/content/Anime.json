@@ -5,6 +5,10 @@
             "Grup": "μ's",
             "Image":"https://m.media-amazon.com/images/M/MV5BMWQ5NDBjNzMtNmEwZC00MGY0LWJjN2QtMWQzMjliOGUwMzY4XkEyXkFqcGc@._V1_.jpg"},
         {
+            "Name": "Love live! the school idol project 2!!",
+            "Grup": "μ's",
+            "Image":"https://icrvb3jy.xinmedia.com/solomo/article/D/3/D/D3D837B4-CD35-9F84-69E9-D7F16D803928.jpg"},
+        {
           "Name": "Love live! Sunshine!!",
             "Grup": "Aquors",
             "Image":"https://images.justwatch.com/poster/253937608/s718/love-live-sunshine.jpg"},
@@ -15,6 +19,14 @@
         {
             "Name": "Love live! Superstar!!",
             "Grup": "Liella",
-            "Image":"https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/13b871ba35288b6a2722ae26b01e7447.jpg"}
+            "Image":"https://www.crunchyroll.com/imgsrv/display/thumbnail/480x720/catalog/crunchyroll/13b871ba35288b6a2722ae26b01e7447.jpg"},
+        {
+            "Name": "Sunshine in the mirror",
+            "Grup": "Aquors",
+            "Image":"https://m.media-amazon.com/images/M/MV5BMzk2NjBmOTctNWY0OS00OTU4LWIxYWUtYjRiZGMzYzhlNjExXkEyXkFqcGc@._V1_.jpg"},
+        {
+            "Name": "Love live! Nijiyon",
+            "Grup": "nijigasaki",
+            "Image":"https://a.storyblok.com/f/178900/960x1359/54c5145cdd/nijiyon-animation-second-season-key-visual.png/m/filters:quality(95)format(webp)"}
     ]
 }

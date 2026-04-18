@@ -1,10 +1,84 @@
+/*
+  Raíz del componente: ancho acotado y centrado dentro de .multimedia-swipe-mount (App.css),
+  que a su vez centra este bloque en vertical y horizontal en la pantalla.
+*/
+.swipe {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  box-sizing: border-box;
+}
 
-.container{
+/* Carrusel Embla: 5 “huecos” visibles (~20% cada uno). El slide activo se centra con align:'center' en TS. */
+.embla {
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    max-width: min(100%, 1400px);
+    /* Margen vertical para que el slide central escalado no lo recorte el overflow del viewport. */
+    padding-block: 28px;
+}
+.embla__container {
     display: flex;
-    justify-content: center;
+    margin-left: calc(var(--slide-spacing, 8px) * -1);
     align-items: center;
-    padding: 0px 10px;
-    margin: 10px;
+}
+.embla__slide {
+    position: relative;
+    flex: 0 0 20%;
+    min-width: 0;
+    padding-left: var(--slide-spacing, 8px);
+    box-sizing: border-box;
+}
+/* Un solo “slide” (vacío / mensaje) ocupa todo el ancho. */
+.embla__slide--solo {
+    flex: 0 0 100%;
+}
+
+/*
+  Escala por rol respecto al slide seleccionado (centrado):
+  - center: el que muestra el nombre; más grande.
+  - adj: los inmediatos a izquierda/derecha del central; tamaño intermedio.
+  - edge: a distancia ≥2 (en una franja de 5 visibles son las dos orillas); un poco más pequeños que adj.
+*/
+.embla__slide-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    transform-origin: center center;
+    transition: transform 0.28s ease-out;
+}
+.embla__slide--center {
+    z-index: 4;
+}
+.embla__slide--center .embla__slide-inner {
+    transform: scale(1.2);
+}
+.embla__slide--adj {
+    z-index: 2;
+}
+.embla__slide--adj .embla__slide-inner {
+    transform: scale(0.92);
+}
+.embla__slide--edge {
+    z-index: 1;
+}
+.embla__slide--edge .embla__slide-inner {
+    transform: scale(0.78);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
 }
 .informacion{
     min-width: 100px;
@@ -24,7 +98,14 @@
     font-family: sans-serif;
     font-size: 40px;
 }
-.swipe-card__img{
-    height: 500px;
+.buttomS:hover{
+    cursor: pointer;
+    filter: brightness(1.5);
+    transform: scale(1.08);
 }
 
+.swipe-card__img{
+    width: 350px;
+    height: auto;
+    display: block;
+}
