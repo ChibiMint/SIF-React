@@ -1,0 +1,132 @@
+.item-detail--root {
+  max-width: 1700px;
+  max-height: 750px;
+}
+
+.item-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  width: 100%;
+  margin-inline: auto;
+  padding: 0.5rem 1rem 1rem;
+  box-sizing: border-box;
+}
+
+.item-detail__back {
+  align-self: flex-start;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.item-detail__back:hover {
+  text-decoration: underline;
+}
+
+.item-detail__card {
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 16px;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item-detail__img {
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.item-detail__img--thumb {
+  max-height: 200px;
+  object-fit: contain;
+  margin: 0 auto 0.5rem;
+}
+
+.item-detail__title {
+  margin: 0.75rem 0 0.25rem;
+  font-size: 1.35rem;
+  line-height: 1.25;
+  color: #333;
+}
+
+.item-detail__meta {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.item-detail__missing {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
+}
+
+.item-detail__empty {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Vista con lista de capítulos / contenido (anime y libros mapeados en detailChapters.ts) */
+.item-detail--chapters {
+  overflow-y: scroll;
+  border-radius: 16px;
+  padding: 1rem 1.25rem 1.5rem;
+  align-items: stretch;
+}
+
+.item-detail__title {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  
+  background-color: #f2b6cd;
+  border: 2px solid white;
+  border-radius: 150px;
+  width: 1300px;
+  height: 50px;
+  margin: 10px;
+
+  color: black;    
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 32px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+}
+
+
+.item-detail__chapter-list {
+  margin: 2px;
+  padding: 15px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.item-detail__chapter {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.65rem 0.75rem;
+  background: #f4f5f7;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.item-detail__chapter-num {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #8b5a5a;
+  letter-spacing: 0.02em;
+}
+
+.item-detail__chapter-name {
+  font-size: 1rem;
+  color: #222;
+  line-height: 1.35;
+}

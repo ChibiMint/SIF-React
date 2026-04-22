@@ -1,60 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import useEmblaCarousel from 'embla-carousel-react'
 import './Swipe.css'
-import Anime from './content/Anime.json'
-import Songs from './content/Songs.json'
 import t1 from './assets/t1.svg'
 import t2 from './assets/t2.svg'
+import { ALL, type Item, type Kind } from './itemCatalog'
 import { useMultimedia } from './MultimediaContext'
-
-type Kind = 'anime' | 'song'
-
-type Item = {
-  id: string
-  kind: Kind
-  name: string
-  grup: string
-  image?: string
-}
 
 /** Relaciona el botón de categoría en Multi con tipos de ítem; arrays vacíos = esa categoría no muestra nada aún. */
 const CATEGORIA_A_KIND: Record<string, Kind[]> = {
   Anime: ['anime'],
-  Musica: ['song'],
-  Conciertos: [],
-  Libros: [],
+  Musica: ['song', 'album'],
+  Conciertos: ['Conciertos'],
+  Libros: ['Libros'],
 }
-
-/**
- * Une Anime.json y Songs.json en un solo array con forma uniforme (`Item`) para el carrusel.
- */
-function buildAll(): Item[] {
-  const out: Item[] = []
-
-  Anime.sections.forEach((s, i) => {
-    out.push({
-      id: `anime-${i}`,
-      kind: 'anime',
-      name: s.Name,
-      grup: s.Grup,
-      image: s.Image,
-    })
-  })
-
-  Songs.sections.forEach((s, i) => {
-    out.push({
-      id: `song-${i}`,
-      kind: 'song',
-      name: s.Name,
-      grup: s.Grup,
-      image: s.Image,
-    })
-  })
-
-  return out
-}
-
-const ALL = buildAll()
 
 /**
  * Aplica filtros del contexto: categoría restringe por `kind`, grupo por `grup`.
@@ -71,11 +30,12 @@ function filtrar(items: Item[], grupo: string | null, categoria: string | null):
 }
 
 /** Clase CSS según qué tan lejos está el slide del seleccionado: centro (nombre), vecinos, orillas. */
-function slideRingClass(index: number, selectedIndex: number): 'center' | 'adj' | 'edge' {
+function slideRingClass(index: number, selectedIndex: number): 'center' | 'adj' | 'edge'| 'edge2' {
   const d = Math.abs(index - selectedIndex)
   if (d === 0) return 'center'
   if (d === 1) return 'adj'
-  return 'edge'
+  if (d === 2) return 'edge'
+  return 'edge2'
 }
 
 type SlideItem = Item & { loopKey: string }
@@ -125,6 +85,12 @@ export default function Swipe() {
     align: 'center',
     slidesToScroll: 1,
     watchSlides: true,
+    /**
+     * Si el gesto empieza sobre el enlace del slide central, no activar drag de Embla
+     * para que el click navegue a /multimedia/item/:id.
+     */
+    watchDrag: (_api, evt) =>
+      !(evt.target as HTMLElement | null)?.closest('a.swipe-card--link'),
   })
 
   /** Índice del slide “seleccionado” por Embla (el centrado al hacer snap); sincroniza título y escalas. */
@@ -199,9 +165,24 @@ export default function Swipe() {
                       el ancho lógico del slide (Embla sigue midiendo 20% por slide).
                     */}
                     <div className="embla__slide-inner">
-                      <div className="swipe-card">
-                        {it.image ? <img src={it.image} alt="" className="swipe-card__img" /> : null}
-                      </div>
+                      {ring === 'center' ? (
+                        <Link
+                          to={`/multimedia/item/${encodeURIComponent(it.id)}`}
+                          className="swipe-card swipe-card--link"
+                          draggable={false}
+                          onDragStart={(e) => e.preventDefault()}
+                        >
+                          {it.image ? (
+                            <img src={it.image} alt="" className="swipe-card__img" />
+                          ) : null}
+                        </Link>
+                      ) : (
+                        <div className="swipe-card">
+                          {it.image ? (
+                            <img src={it.image} alt="" className="swipe-card__img" />
+                          ) : null}
+                        </div>
+                      )}
                     </div>
                   </div>
                 )

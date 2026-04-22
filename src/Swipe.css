@@ -67,7 +67,10 @@
 .embla__slide--edge {
     z-index: 1;
 }
-.embla__slide--edge .embla__slide-inner {
+.embla__slide--edge2 {
+    z-index: 0;
+}
+.embla__slide--edge .embla__slide-inner, .embla__slide--edge2 .embla__slide-inner {
     transform: scale(0.78);
 }
 
@@ -104,8 +107,21 @@
     transform: scale(1.08);
 }
 
+/* Slide central: mismo aspecto que .swipe-card pero es <a> y lleva a /multimedia/item/… */
+.swipe-card--link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+.swipe-card--link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
 .swipe-card__img{
     width: 350px;
     height: auto;
     display: block;
+    padding: 10px;
 }
