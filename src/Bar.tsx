@@ -12,33 +12,18 @@ export default function Bar() {
       <Link to="/" className="nav-btn home">
         <img src={b1} alt="Inicio" height={80} />
       </Link>
-      <a
-        href="https://www.instagram.com"
-        className="nav-btn redes"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <img src={b2} alt="Redes" height={80} />
-      </a>
+        <Link to="/redes" className="nav-btn redes">
+          <img src={b2} alt="Redes" height={80} />
+        </Link>
       <Link to="/multimedia" className="nav-btn multimedia">
         <img src={b4} alt="Multi" height={80} />
       </Link>
-      <a
-        href="https://www.tiktok.com"
-        className="nav-btn tienda"
-        target="_blank"
-        rel="noreferrer"
-      >
+      <Link to="/tienda" className="nav-btn tienda">
         <img src={b6} alt="Tienda" height={80} />
-      </a>
-      <a
-        href="https://www.wikipedia.org"
-        className="nav-btn wiki"
-        target="_blank"
-        rel="noreferrer"
-      >
+      </Link>
+      <Link to="/wiki" className="nav-btn wiki">
         <img src={b5} alt="Wiki" height={80} />
-      </a>
+      </Link>
     </div>
   )
 }

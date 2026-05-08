@@ -3,9 +3,12 @@ import './App.css'
 import Bar from './Bar'
 import Home from './Home'
 import InfoBar from './InfoBar'
+import Redes from './Redes'	
 import ItemDetail from './ItemDetail'
 import MultimediaLayout from './MultimediaLayout'
 import Swipe from './Swipe'
+import Tienda from './Tienda'
+import Wiki from './Wiki'
 
 export default function App() {
   return (
@@ -23,6 +26,24 @@ export default function App() {
           <Route path="item/:itemId" element={<ItemDetail />} />
         </Route>
         <Route path='*' element={<Navigate to="/" replace />}/>
+      <Route path='/redes' element={
+        <>
+        <Redes/>
+        </>
+        }
+        />
+        <Route path='/tienda' element={
+        <>
+        <Tienda/>
+        </>
+        }
+        />
+        <Route path='/wiki' element={
+        <>
+        <Wiki/>
+        </>
+        }
+        />
     </Routes>
     <Bar/>
     </>

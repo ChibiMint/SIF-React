@@ -1,0 +1,59 @@
+.redes{
+    display: flex;
+    font-family: sans-serif;
+}
+.img{
+    width: 200px;
+    height: 200px;
+}
+
+.redes-Box1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 500px;
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 30px;
+    border: 5px solid white;
+}
+.redes-Box2{
+    width: 100%;
+    height: 100%;
+    border: 5px solid #fc5c99;
+}
+.redes-Box3{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 9px;
+}
+.redes-Box4{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    padding: 10px;
+    margin: 30px;
+}
+.redes-Item{
+    width: 75%;
+    height: 100%;
+    background-image: url("https://picsum.photos/1200/300");
+    background-size: cover;
+    background-position: center;
+    border: 3px solid white;
+    border-radius: 25px;
+    margin: 3px;
+}
+.Name{
+    margin: auto 3%;
+    font-size:50px;
+    font-weight:900;
+    color:white;
+    -webkit-text-stroke: 2px #ff6cab;
+}

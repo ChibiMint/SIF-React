@@ -1,8 +1,8 @@
-import Anime from './content/Anime.json'
-import Songs from './content/Songs.json'
-import Album from './content/Album.json'
-import Conciertos from './content/Conciertos.json'
-import Libros from './content/Libros.json'
+import Anime from './content/Multimedia/Anime.json'
+import Songs from './content/Multimedia/Songs.json'
+import Album from './content/Multimedia/Album.json'
+import Conciertos from './content/Multimedia/Conciertos.json'
+import Libros from './content/Multimedia/Libros.json'
 
 export type Kind = 'anime' | 'song' | 'album' | 'Conciertos' | 'Libros'
 

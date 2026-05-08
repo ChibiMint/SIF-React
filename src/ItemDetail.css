@@ -1,6 +1,5 @@
 .item-detail--root {
-  max-width: 1700px;
-  max-height: 750px;
+  max-width: 640px;
 }
 
 .item-detail {
@@ -19,6 +18,7 @@
   color: #fff;
   text-decoration: none;
   font-weight: 600;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
 }
 
 .item-detail__back:hover {
@@ -31,6 +31,7 @@
   padding: 1rem;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
 .item-detail__img {
@@ -73,35 +74,37 @@
 
 /* Vista con lista de capítulos / contenido (anime y libros mapeados en detailChapters.ts) */
 .item-detail--chapters {
-  overflow-y: scroll;
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 16px;
   padding: 1rem 1.25rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   align-items: stretch;
 }
 
-.item-detail__title {
-  display: flex;
-  justify-content: center;
-  padding: 10px;
-  
-  background-color: #f2b6cd;
-  border: 2px solid white;
-  border-radius: 150px;
-  width: 1300px;
-  height: 50px;
-  margin: 10px;
-
-  color: black;    
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 32px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+.item-detail__hero {
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 0.25rem;
 }
 
+.item-detail__hero .item-detail__title {
+  margin-top: 0.25rem;
+}
+
+.item-detail__chapters {
+  min-width: 0;
+}
+
+.item-detail__chapters-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  color: #333;
+}
 
 .item-detail__chapter-list {
-  margin: 2px;
-  padding: 15px;
+  margin: 0;
+  padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -122,6 +125,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: #8b5a5a;
+  text-transform: uppercase;
   letter-spacing: 0.02em;
 }
 

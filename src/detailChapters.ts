@@ -1,13 +1,13 @@
 import type { Item } from './itemCatalog'
-import CapitulosSIP1 from './content/Caps/Cap_SIP1.json'
-import CapitulosSIP2 from './content/Caps/Cap_SIP2.json'
-import CapitulosSunshine1 from './content/Caps/Cap_Sunshine1.json'
-import CapitulosNijigasaki1 from './content/Caps/Cap_Nijigasaki1.json'
-import CapitulosSuperstar1 from './content/Caps/Cap_Superstar1.json'
-import CapitulosSunshineMirror from './content/Caps/Cap_Stm.json'
-import CapitulosNijiyon from './content/Caps/Cap_Nijiyon.json'
-import CapitulosLibroSchoolIdolDiary from './content/Caps/Cap_SID.json'
-import CapitulosLibroManga from './content/Caps/Cap_Manga.json'
+import CapitulosSIP1 from './content/Multimedia/Caps/Cap_SIP1.json'
+import CapitulosSIP2 from './content/Multimedia/Caps/Cap_SIP2.json'
+import CapitulosSunshine1 from './content/Multimedia/Caps/Cap_Sunshine1.json'
+import CapitulosNijigasaki1 from './content/Multimedia/Caps/Cap_Nijigasaki1.json'
+import CapitulosSuperstar1 from './content/Multimedia/Caps/Cap_Superstar1.json'
+import CapitulosSunshineMirror from './content/Multimedia/Caps/Cap_STM.json'
+import CapitulosNijiyon from './content/Multimedia/Caps/Cap_Nijigasaki1.json'
+import CapitulosLibroSchoolIdolDiary from './content/Multimedia/Caps/Cap_SID.json'
+import CapitulosLibroManga from './content/Multimedia/Caps/Cap_Manga.json'
 
 export type CapituloRow = { Capitulo: string; Name: string }
 
