@@ -1,136 +1,582 @@
-.item-detail--root {
-  max-width: 640px;
-}
-
 .item-detail {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 1rem;
   width: 100%;
-  margin-inline: auto;
-  padding: 0.5rem 1rem 1rem;
+  height: 1000px;
   box-sizing: border-box;
+  padding: 20px 24px 70px;
+  overflow-x: hidden;
 }
 
-.item-detail__back {
-  align-self: flex-start;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
-}
-
-.item-detail__back:hover {
-  text-decoration: underline;
-}
-
-.item-detail__card {
-  background: rgba(255, 255, 255, 0.88);
-  border-radius: 16px;
-  padding: 1rem;
+.item-detail__container {
   width: 100%;
-  box-sizing: border-box;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-.item-detail__img {
-  display: block;
-  width: 100%;
-  max-height: 70vh;
-  object-fit: contain;
-  border-radius: 8px;
+
+
+/* =========================================
+   CABECERA
+   ========================================= */
+
+.item-detail__header {
+  margin-bottom: 24px;
 }
 
-.item-detail__img--thumb {
-  max-height: 200px;
-  object-fit: contain;
-  margin: 0 auto 0.5rem;
-}
+.item-detail__header h1 {
+  margin: 0;
 
-.item-detail__title {
-  margin: 0.75rem 0 0.25rem;
-  font-size: 1.35rem;
+  font-size: 32px;
   line-height: 1.25;
-  color: #333;
+  font-weight: 750;
 }
 
-.item-detail__meta {
-  margin: 0;
-  color: #666;
-  font-size: 0.95rem;
+
+/* =========================================
+   LAYOUT
+   ========================================= */
+
+.item-detail__layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 430px);
+
+  gap: 28px;
+
+  align-items: start;
 }
 
-.item-detail__missing {
-  color: #fff;
-  text-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
-}
 
-.item-detail__empty {
-  margin: 0;
-  color: #666;
-  font-size: 0.95rem;
-}
+/* =========================================
+   CONTENIDO PRINCIPAL
+   ========================================= */
 
-/* Vista con lista de capítulos / contenido (anime y libros mapeados en detailChapters.ts) */
-.item-detail--chapters {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 16px;
-  padding: 1rem 1.25rem 1.5rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  align-items: stretch;
-}
-
-.item-detail__hero {
-  text-align: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 1rem;
-  margin-bottom: 0.25rem;
-}
-
-.item-detail__hero .item-detail__title {
-  margin-top: 0.25rem;
-}
-
-.item-detail__chapters {
+.item-detail__main {
   min-width: 0;
 }
 
-.item-detail__chapters-title {
-  margin: 0 0 0.75rem;
-  font-size: 1.1rem;
-  color: #333;
+
+/* =========================================
+   INFORMACIÓN
+   ========================================= */
+
+.item-detail__information {
+  display: grid;
+
+  grid-template-columns:
+    minmax(180px, 280px)
+    minmax(0, 1fr);
+
+  gap: 28px;
+
+  padding: 20px;
+
+  border: 1px solid rgba(128, 128, 128, 0.25);
+
+  border-radius: 12px;
+
+  background: rgba(128, 128, 128, 0.06);
+
+  box-sizing: border-box;
 }
+
+
+/* =========================================
+   PORTADA
+   ========================================= */
+
+.item-detail__cover-wrapper {
+  width: 100%;
+}
+
+.item-detail__cover {
+  display: block;
+
+  width: 100%;
+  aspect-ratio: 2 / 3;
+
+  object-fit: cover;
+
+  border-radius: 9px;
+
+  background: #222;
+}
+
+.item-detail__cover--empty {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   INFORMACIÓN BÁSICA
+   ========================================= */
+
+.item-detail__basic {
+  min-width: 0;
+}
+
+.item-detail__title {
+  margin: 0;
+
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+
+/* =========================================
+   CATEGORÍAS
+   ========================================= */
+
+.item-detail__categories {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 14px;
+}
+
+.item-detail__category {
+  display: inline-flex;
+
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(128, 128, 128, 0.16);
+
+  font-size: 12px;
+  font-weight: 700;
+
+  opacity: 0.8;
+}
+
+
+/* =========================================
+   SECCIONES WIKI
+   ========================================= */
+
+.item-detail__wiki-section {
+  margin-top: 26px;
+}
+
+.item-detail__wiki-section h2 {
+  margin: 0 0 10px;
+
+  padding-bottom: 7px;
+
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+
+  font-size: 19px;
+}
+
+
+/* =========================================
+   TABLA DE INFORMACIÓN
+   ========================================= */
+
+.item-detail__info-table {
+  display: flex;
+
+  flex-direction: column;
+
+  border: 1px solid rgba(128, 128, 128, 0.2);
+
+  border-radius: 8px;
+
+  overflow: hidden;
+}
+
+.item-detail__info-row {
+  display: grid;
+
+  grid-template-columns: 110px minmax(0, 1fr);
+
+  border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+}
+
+.item-detail__info-row:last-child {
+  border-bottom: 0;
+}
+
+.item-detail__info-label {
+  padding: 10px;
+
+  background: rgba(128, 128, 128, 0.08);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.item-detail__info-value {
+  min-width: 0;
+
+  padding: 10px;
+
+  font-size: 13px;
+
+  word-break: break-word;
+}
+
+
+/* =========================================
+   DESCRIPCIÓN
+   ========================================= */
+
+.item-detail__description {
+  margin: 0;
+
+  line-height: 1.65;
+
+  opacity: 0.8;
+}
+
+
+/* =========================================
+   SIDEBAR DE EPISODIOS
+   ========================================= */
+
+.item-detail__sidebar {
+  min-width: 0;
+
+  border: 1px solid rgba(128, 128, 128, 0.25);
+
+  border-radius: 12px;
+
+  background: rgba(128, 128, 128, 0.06);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   CABECERA SIDEBAR
+   ========================================= */
+
+.item-detail__sidebar-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 18px;
+
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+}
+
+.item-detail__sidebar-header h2 {
+  margin: 0;
+
+  font-size: 21px;
+}
+
+.item-detail__sidebar-header p {
+  margin: 4px 0 0;
+
+  font-size: 12px;
+
+  opacity: 0.6;
+}
+
+.item-detail__episode-count {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  min-width: 30px;
+  height: 30px;
+
+  padding: 0 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 999px;
+
+  background: rgba(128, 128, 128, 0.15);
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* =========================================
+   LISTA DE EPISODIOS
+   ========================================= */
 
 .item-detail__chapter-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
   display: flex;
+
   flex-direction: column;
-  gap: 0.65rem;
 }
+
+
+/* =========================================
+   TARJETA DE EPISODIO
+   ========================================= */
 
 .item-detail__chapter {
+  display: grid;
+
+  grid-template-columns: 130px minmax(0, 1fr);
+
+  gap: 12px;
+
+  padding: 10px;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  border-bottom: 1px solid rgba(128, 128, 128, 0.18);
+
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.item-detail__chapter:last-child {
+  border-bottom: 0;
+}
+
+.item-detail__chapter:hover {
+  background: rgba(128, 128, 128, 0.13);
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================
+   MINIATURA
+   ========================================= */
+
+.item-detail__chapter-image-wrapper {
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: 7px;
+
+  background: #222;
+}
+
+.item-detail__chapter-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.item-detail__chapter-image--empty {
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  padding: 0.65rem 0.75rem;
-  background: #f4f5f7;
-  border-radius: 10px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
 
-.item-detail__chapter-num {
-  font-size: 0.8rem;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-size: 20px;
   font-weight: 700;
-  color: #8b5a5a;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
-.item-detail__chapter-name {
-  font-size: 1rem;
-  color: #222;
-  line-height: 1.35;
+
+/* =========================================
+   TEXTO DEL EPISODIO
+   ========================================= */
+
+.item-detail__chapter-content {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 5px;
+}
+
+.item-detail__chapter-number {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  opacity: 0.6;
+}
+
+.item-detail__chapter-title {
+  display: -webkit-box;
+
+  overflow: hidden;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  font-size: 14px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   SIN CAPÍTULOS
+   ========================================= */
+
+.item-detail__empty {
+  padding: 25px 18px;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  opacity: 0.65;
+}
+
+
+/* =========================================
+   ERROR
+   ========================================= */
+
+.item-detail--error {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  min-height: 60vh;
+
+  text-align: center;
+}
+
+.item-detail--error h1 {
+  margin: 0;
+
+  font-size: 24px;
+}
+
+.item-detail--error a {
+  color: inherit;
+}
+
+
+/* =========================================
+   TABLET
+   ========================================= */
+
+@media (max-width: 1000px) {
+
+  .item-detail__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .item-detail__sidebar {
+    width: 100%;
+  }
+
+  .item-detail__chapter-list {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .item-detail__chapter {
+    grid-template-columns: 120px minmax(0, 1fr);
+
+    border-right: 1px solid rgba(128, 128, 128, 0.18);
+  }
+
+}
+
+
+/* =========================================
+   MÓVIL
+   ========================================= */
+
+@media (max-width: 650px) {
+
+  .item-detail {
+    padding: 12px 10px 50px;
+  }
+
+  .item-detail__header h1 {
+    font-size: 25px;
+  }
+
+  .item-detail__information {
+    grid-template-columns: 1fr;
+
+    gap: 20px;
+
+    padding: 14px;
+  }
+
+  .item-detail__cover-wrapper {
+    width: min(240px, 100%);
+
+    margin: 0 auto;
+  }
+
+  .item-detail__title {
+    font-size: 23px;
+  }
+
+  .item-detail__chapter-list {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  .item-detail__chapter {
+    grid-template-columns: 125px minmax(0, 1fr);
+
+    border-right: 0;
+  }
+
+}
+
+
+/* =========================================
+   MÓVIL PEQUEÑO
+   ========================================= */
+
+@media (max-width: 430px) {
+
+  .item-detail__chapter {
+    grid-template-columns: 105px minmax(0, 1fr);
+
+    gap: 9px;
+
+    padding: 8px;
+  }
+
+  .item-detail__chapter-title {
+    font-size: 13px;
+  }
+
+  .item-detail__chapter-number {
+    font-size: 11px;
+  }
+
 }

@@ -1,77 +1,326 @@
 import { Link, useParams } from 'react-router-dom'
-import { getChaptersForItem, type CapituloRow } from './detailChapters.ts'
-import { getItemById, type Item } from './itemCatalog'
+
+import {
+  getChaptersForItem,
+  type CapituloRow,
+} from './detailChapters'
+
+import {
+  getItemById,
+} from './itemCatalog'
+
 import './ItemDetail.css'
 
-function ItemDetailChapters({ item, rows }: { item: Item; rows: CapituloRow[] }) {
-  const sectionTitle = item.kind === 'Libros' ? 'Contenido' : 'Capítulos'
+
+function cleanUrl(value?: string): string {
+  if (!value) {
+    return ''
+  }
+
+  const markdownMatch = value.match(
+    /\]\((https?:\/\/[^)]+)\)/
+  )
+
+  if (markdownMatch) {
+    return markdownMatch[1]
+  }
+
+  return value
+}
+
+
+function ChapterCard({
+  chapter,
+  itemId,
+}: {
+  chapter: CapituloRow
+  itemId: string
+}) {
+  const image = cleanUrl(chapter.Imagen)
 
   return (
-    <div className="item-detail item-detail--chapters">
-      <header className="item-detail__hero">
-        {item.image ? (
-          <img src={item.image} alt="" className="item-detail__img item-detail__img--thumb" />
-        ) : null}
-        <h1 className="item-detail__title">{item.name}</h1>
-        <p className="item-detail__meta">
-          {item.grup} · {item.kind}
-        </p>
-      </header>
+    <Link
+      to={
+        `/multimedia/item/${encodeURIComponent(itemId)}` +
+        `/cap/${encodeURIComponent(chapter.Capitulo)}`
+      }
+      className="item-detail__chapter"
+    >
 
-      <section className="item-detail__chapters" aria-label={sectionTitle}>
-        <h2 className="item-detail__chapters-title">{sectionTitle}</h2>
-        {rows.length === 0 ? (
-          <p className="item-detail__empty">Aún no hay entradas en el JSON para este título.</p>
+      <div className="item-detail__chapter-image-wrapper">
+
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            className="item-detail__chapter-image"
+          />
         ) : (
-          <ol className="item-detail__chapter-list">
-            {rows.map((row) => (
-              <li key={`${row.Capitulo}-${row.Name}`} className="item-detail__chapter">
-                <span className="item-detail__chapter-num">
-                  {item.kind === 'Libros' ? `Parte ${row.Capitulo}` : `Ep. ${row.Capitulo}`}
-                </span>
-                <span className="item-detail__chapter-name">{row.Name}</span>
-              </li>
-            ))}
-          </ol>
+          <div className="item-detail__chapter-image item-detail__chapter-image--empty">
+            <span>
+              {chapter.Capitulo}
+            </span>
+          </div>
         )}
-      </section>
-    </div>
+
+      </div>
+
+
+      <div className="item-detail__chapter-content">
+
+        <span className="item-detail__chapter-number">
+          {chapter.Capitulo === 'OVA'
+            ? 'OVA'
+            : `Ep. ${chapter.Capitulo}`}
+        </span>
+
+        <span className="item-detail__chapter-title">
+          {chapter.Name}
+        </span>
+
+      </div>
+
+    </Link>
   )
 }
 
-function ItemDetailGeneric({ item }: { item: Item }) {
+
+function ItemInformation({
+  item,
+}: {
+  item: NonNullable<ReturnType<typeof getItemById>>
+}) {
   return (
-    <article className="item-detail__card">
-      {item.image ? <img src={item.image} alt="" className="item-detail__img" /> : null}
-      <h1 className="item-detail__title">{item.name}</h1>
-      <p className="item-detail__meta">
-        {item.grup} · {item.kind}
-      </p>
-    </article>
+    <section className="item-detail__information">
+
+      <div className="item-detail__cover-wrapper">
+
+        {item.image ? (
+          <img
+            src={item.image}
+            alt={item.name}
+            className="item-detail__cover"
+          />
+        ) : (
+          <div className="item-detail__cover item-detail__cover--empty">
+            Sin imagen
+          </div>
+        )}
+
+      </div>
+
+
+      <div className="item-detail__basic">
+
+        <h1 className="item-detail__title">
+          {item.name}
+        </h1>
+
+
+        <div className="item-detail__categories">
+
+          <span className="item-detail__category">
+            {item.kind}
+          </span>
+
+          <span className="item-detail__category">
+            {item.grup}
+          </span>
+
+        </div>
+
+
+        <div className="item-detail__wiki-section">
+
+          <h2>
+            Información
+          </h2>
+
+          <div className="item-detail__info-table">
+
+            <div className="item-detail__info-row">
+              <span className="item-detail__info-label">
+                Nombre
+              </span>
+
+              <span className="item-detail__info-value">
+                {item.name}
+              </span>
+            </div>
+
+
+            <div className="item-detail__info-row">
+              <span className="item-detail__info-label">
+                Grupo
+              </span>
+
+              <span className="item-detail__info-value">
+                {item.grup}
+              </span>
+            </div>
+
+
+            <div className="item-detail__info-row">
+              <span className="item-detail__info-label">
+                Tipo
+              </span>
+
+              <span className="item-detail__info-value">
+                {item.kind}
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div className="item-detail__wiki-section">
+
+          <h2>
+            Descripción
+          </h2>
+
+          <p className="item-detail__description">
+            Información sobre {item.name}.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
   )
 }
 
-/**
- * Detalle del carrusel: anime y libros con JSON en `detailChapters.ts` muestran lista de capítulos/contenido.
- */
+
 export default function ItemDetail() {
-  const { itemId = '' } = useParams<{ itemId: string }>()
-  const decoded = decodeURIComponent(itemId)
-  const item = getItemById(decoded)
-  const chapters = item ? getChaptersForItem(item) : null
+
+  const {
+    itemId = '',
+  } = useParams<{
+    itemId: string
+  }>()
+
+
+  const item = getItemById(
+    decodeURIComponent(itemId)
+  )
+
+
+  if (!item) {
+    return (
+      <div className="item-detail item-detail--error">
+
+        <h1>
+          No se encontró este contenido
+        </h1>
+
+      </div>
+    )
+  }
+
+
+  const chapters = getChaptersForItem(item)
+
 
   return (
-    <div className="item-detail item-detail--root">
-      <Link to="/multimedia" className="item-detail__back">
-        ← Volver al carrusel
-      </Link>
-      {!item ? (
-        <p className="item-detail__missing">No se encontró este ítem.</p>
-      ) : chapters !== null ? (
-        <ItemDetailChapters item={item} rows={chapters} />
-      ) : (
-        <ItemDetailGeneric item={item} />
-      )}
+    <div className="item-detail">
+
+      <div className="item-detail__container">
+
+
+
+        {/* TÍTULO PRINCIPAL */}
+
+        <header className="item-detail__header">
+
+          <h1>
+            {item.name}
+          </h1>
+
+        </header>
+
+
+        {/* CONTENIDO PRINCIPAL */}
+
+        <div className="item-detail__layout">
+
+
+          {/* INFORMACIÓN */}
+
+          <main className="item-detail__main">
+
+            <ItemInformation
+              item={item}
+            />
+
+          </main>
+
+
+          {/* CAPÍTULOS */}
+
+          <aside className="item-detail__sidebar">
+
+            <div className="item-detail__sidebar-header">
+
+              <div>
+
+                <h2>
+                  Episodios
+                </h2>
+
+                <p>
+                  Lista de capítulos disponibles
+                </p>
+
+              </div>
+
+              {chapters && (
+                <span className="item-detail__episode-count">
+                  {chapters.length}
+                </span>
+              )}
+
+            </div>
+
+
+            {!chapters || chapters.length === 0 ? (
+
+              <div className="item-detail__empty">
+
+                <p>
+                  Aún no hay capítulos disponibles
+                  para este contenido.
+                </p>
+
+              </div>
+
+            ) : (
+
+              <div className="item-detail__chapter-list">
+
+                {chapters.map((chapter) => (
+
+                  <ChapterCard
+                    key={`${chapter.Capitulo}-${chapter.Name}`}
+                    chapter={chapter}
+                    itemId={item.id}
+                  />
+
+                ))}
+
+              </div>
+
+            )}
+
+          </aside>
+
+
+        </div>
+
+      </div>
+
     </div>
   )
 }

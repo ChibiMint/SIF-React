@@ -1,4 +1,6 @@
 import type { Item } from './itemCatalog'
+
+
 import CapitulosSIP1 from './content/Multimedia/Caps/Cap_SIP1.json'
 import CapitulosSIP2 from './content/Multimedia/Caps/Cap_SIP2.json'
 import CapitulosSunshine1 from './content/Multimedia/Caps/Cap_Sunshine1.json'
@@ -9,9 +11,21 @@ import CapitulosNijiyon from './content/Multimedia/Caps/Cap_Nijigasaki1.json'
 import CapitulosLibroSchoolIdolDiary from './content/Multimedia/Caps/Cap_SID.json'
 import CapitulosLibroManga from './content/Multimedia/Caps/Cap_Manga.json'
 
-export type CapituloRow = { Capitulo: string; Name: string }
 
-/** Mismo `Name` que en Anime.json / Libros.json → filas de capítulo (o vacío hasta que completes el JSON). */
+export type CapituloRow = {
+  Capitulo: string
+  Name: string
+  Jap?: string
+  Romangi?: string
+  Imagen?: string
+  Canciones?: string
+  Fecha?: string
+  Info?: string
+  LinkA?: string
+  LinkB?: string
+}
+
+
 const CHAPTERS_BY_TITLE: Record<string, CapituloRow[]> = {
   'Love live! the school idol project!': CapitulosSIP1.sections,
   'Love live! the school idol project 2!!': CapitulosSIP2.sections,
@@ -24,12 +38,42 @@ const CHAPTERS_BY_TITLE: Record<string, CapituloRow[]> = {
   'Love Live! Manga': CapitulosLibroManga.sections,
 }
 
-/**
- * Si el ítem es anime o libro y su `name` está en el mapa, devuelve las filas del JSON asociado.
- * Si no aplica, devuelve `null` (vista genérica en ItemDetail).
- */
-export function getChaptersForItem(item: Item): CapituloRow[] | null {
-  if (item.kind !== 'anime' && item.kind !== 'Libros') return null
+
+export function getChaptersForItem(
+  item: Item
+): CapituloRow[] | null {
+  if (item.kind !== 'anime' && item.kind !== 'Libros') {
+    return null
+  }
+
+
   const rows = CHAPTERS_BY_TITLE[item.name]
+
+
   return rows !== undefined ? rows : null
 }
+
+
+export function getChapterByNumber(
+  item: Item,
+  chapterNumber: string
+): CapituloRow | undefined {
+  const chapters = getChaptersForItem(item)
+
+
+  if (!chapters) {
+    return undefined
+  }
+
+
+  return chapters.find(
+    (chapter) =>
+      String(chapter.Capitulo) === String(chapterNumber)
+  )
+}
+
+
+
+
+
+

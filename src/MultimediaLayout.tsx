@@ -1,14 +1,17 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { MultimediaProvider } from './MultimediaContext'
 import Multi from './Multi'
 import './App.css'
 
-/** Layout de /multimedia: filtros arriba y <Outlet /> para el carrusel o la ficha de detalle. */
 export default function MultimediaLayout() {
+  const location = useLocation()
+  const isCarousel = location.pathname === '/multimedia'
+
   return (
     <MultimediaProvider>
-      <div className="multimedia-page">
-        <Multi />
+      <div className={`multimedia-page ${isCarousel ? 'multimedia-page--carousel' : 'multimedia-page--detail'}`}>
+        {isCarousel && <Multi />}
+
         <main className="multimedia-swipe-mount">
           <Outlet />
         </main>

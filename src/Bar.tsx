@@ -16,7 +16,7 @@ export default function Bar() {
           <img src={b2} alt="Redes" height={80} />
         </Link>
       <Link to="/multimedia" className="nav-btn multimedia">
-        <img src={b4} alt="Multi" height={80} />
+        <img src={b4} alt="Multimedia" height={80} />
       </Link>
       <Link to="/tienda" className="nav-btn tienda">
         <img src={b6} alt="Tienda" height={80} />
