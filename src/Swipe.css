@@ -1,127 +1,498 @@
 /*
-  Raíz del componente: ancho acotado y centrado dentro de .multimedia-swipe-mount (App.css),
-  que a su vez centra este bloque en vertical y horizontal en la pantalla.
+========================================================
+  SWIPE - CARRUSEL MULTIMEDIA
+========================================================
 */
+
 .swipe {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1700px;
   margin-inline: auto;
+
   display: flex;
   flex-direction: column;
   align-items: stretch;
+
   box-sizing: border-box;
 }
 
-/* Carrusel Embla: 5 “huecos” visibles (~20% cada uno). El slide activo se centra con align:'center' en TS. */
-.embla {
-    overflow: hidden;
-    flex: 1;
-    min-width: 0;
-    max-width: min(100%, 1400px);
-    /* Margen vertical para que el slide central escalado no lo recorte el overflow del viewport. */
-    padding-block: 28px;
-}
-.embla__container {
-    display: flex;
-    margin-left: calc(var(--slide-spacing, 8px) * -1);
-    align-items: center;
-}
-.embla__slide {
-    position: relative;
-    flex: 0 0 20%;
-    min-width: 0;
-    padding-left: var(--slide-spacing, 8px);
-    box-sizing: border-box;
-}
-/* Un solo “slide” (vacío / mensaje) ocupa todo el ancho. */
-.embla__slide--solo {
-    flex: 0 0 100%;
-}
 
 /*
-  Escala por rol respecto al slide seleccionado (centrado):
-  - center: el que muestra el nombre; más grande.
-  - adj: los inmediatos a izquierda/derecha del central; tamaño intermedio.
-  - edge: a distancia ≥2 (en una franja de 5 visibles son las dos orillas); un poco más pequeños que adj.
+========================================================
+  CARRUSEL
+========================================================
 */
-.embla__slide-inner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    transform-origin: center center;
-    transition: transform 0.28s ease-out;
-}
-.embla__slide--center {
-    z-index: 4;
-}
-.embla__slide--center .embla__slide-inner {
-    transform: scale(1.2);
-}
-.embla__slide--adj {
-    z-index: 2;
-}
-.embla__slide--adj .embla__slide-inner {
-    transform: scale(0.92);
-}
-.embla__slide--edge {
-    z-index: 1;
-}
-.embla__slide--edge2 {
-    z-index: 0;
-}
-.embla__slide--edge .embla__slide-inner, .embla__slide--edge2 .embla__slide-inner {
-    transform: scale(0.78);
-}
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.embla {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+
   width: 100%;
-  padding: 0 10px;
-  margin: 10px 0;
+  max-width: 1600px;
+
+  /*
+    Dejamos espacio vertical para que la tarjeta central
+    pueda escalar sin ser recortada.
+  */
+  padding-block: 55px;
+
   box-sizing: border-box;
 }
-.informacion{
-    min-width: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f978a383;
 
-    padding: 0px 10px;
-    border: 2px solid white;
-    border-radius: 150px;
-    height: 90px;
-    margin: 10px;
+.embla__container {
+  display: flex;
+  align-items: center;
 
-    color: white;    
-    font-weight: bold;
-    font-family: sans-serif;
-    font-size: 40px;
-}
-.buttomS:hover{
-    cursor: pointer;
-    filter: brightness(1.5);
-    transform: scale(1.08);
+  margin-left: calc(var(--slide-spacing, 8px) * -1);
 }
 
-/* Slide central: mismo aspecto que .swipe-card pero es <a> y lleva a /multimedia/item/… */
+.embla__slide {
+  position: relative;
+
+  /*
+    Cinco espacios visibles aproximadamente.
+  */
+  flex: 0 0 20%;
+
+  min-width: 0;
+
+  padding-left: var(--slide-spacing, 8px);
+
+  box-sizing: border-box;
+}
+
+
+/*
+  Cuando no hay elementos.
+*/
+.embla__slide--solo {
+  flex: 0 0 100%;
+}
+
+
+/*
+========================================================
+  ESCALAS
+========================================================
+*/
+
+.embla__slide-inner {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  transform-origin: center center;
+
+  transition:
+    transform 0.28s ease-out;
+}
+
+
+/*
+  CENTRO
+*/
+.embla__slide--center {
+  z-index: 4;
+}
+
+.embla__slide--center .embla__slide-inner {
+  transform: scale(1.20);
+}
+
+
+/*
+  ADYACENTES
+*/
+.embla__slide--adj {
+  z-index: 2;
+}
+
+.embla__slide--adj .embla__slide-inner {
+  transform: scale(0.92);
+}
+
+
+/*
+  ORILLAS
+*/
+.embla__slide--edge {
+  z-index: 1;
+}
+
+.embla__slide--edge2 {
+  z-index: 0;
+}
+
+.embla__slide--edge .embla__slide-inner,
+.embla__slide--edge2 .embla__slide-inner {
+  transform: scale(0.78);
+}
+
+
+/*
+========================================================
+  TARJETAS
+========================================================
+*/
+
+.swipe-card {
+  display: block;
+
+  /*
+    IMPORTANTE:
+    NO usar max-width: 100%.
+
+    La imagen debe poder sobresalir del 20% que ocupa
+    cada slide. Ese es el comportamiento visual del
+    diseño original.
+  */
+}
+
+
+/*
+========================================================
+  IMAGEN
+========================================================
+*/
+
+.swipe-card__img {
+  display: block;
+
+  /*
+    Antes:
+      350px
+
+    Ahora:
+      hasta 525px.
+
+    Esto hace que el tamaño base sea aproximadamente
+    1.5x el original y, combinado con el scale del centro,
+    resulte mucho más grande visualmente.
+  */
+  width: clamp(320px, 32vw, 350px);
+
+  height: auto;
+
+  padding: 10px;
+
+  /*
+    MUY IMPORTANTE:
+    Permitir que la imagen sobresalga de su slide.
+  */
+  max-width: none;
+
+  box-sizing: border-box;
+
+  user-select: none;
+}
+
+
+/*
+========================================================
+  ENLACES
+========================================================
+*/
+
 .swipe-card--link {
   text-decoration: none;
   color: inherit;
+
   display: block;
+
   cursor: pointer;
 }
+
 .swipe-card--link:focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid white;
   outline-offset: 4px;
 }
 
-.swipe-card__img{
-    width: 350px;
-    height: auto;
-    display: block;
-    padding: 10px;
+
+/*
+========================================================
+  CONTENEDOR DE FLECHAS + CARRUSEL
+========================================================
+*/
+
+.container {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 0 20px;
+
+  margin: 10px 0;
+
+  box-sizing: border-box;
+
+  gap: 10px;
+}
+
+
+/*
+========================================================
+  FLECHAS
+========================================================
+*/
+
+.buttomS {
+  /*
+    Tamaño grande en PC.
+  */
+  width: clamp(65px, 6vw, 110px);
+
+  height: auto;
+
+  flex: 0 0 auto;
+
+  cursor: pointer;
+
+  transition:
+    filter 0.15s ease,
+    transform 0.15s ease;
+}
+
+.buttomS:hover {
+  filter: brightness(1.5);
+
+  transform: scale(1.08);
+}
+
+
+/*
+========================================================
+  TÍTULO / INFORMACIÓN
+========================================================
+*/
+
+.informacion {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: auto;
+  min-width: 100px;
+
+  /*
+    Diseño original:
+    cápsula rosa con borde blanco.
+  */
+  background-color: #f978a383;
+
+  padding: 0 30px;
+
+  border: 2px solid white;
+  border-radius: 150px;
+
+  min-height: 90px;
+
+  margin: 20px;
+
+  box-sizing: border-box;
+
+  color: white;
+
+  font-weight: bold;
+  font-family: sans-serif;
+
+  /*
+    Grande en PC, pero adaptable.
+  */
+  font-size: clamp(24px, 3vw, 40px);
+
+  text-align: center;
+
+  overflow: hidden;
+}
+
+.informacion p {
+  margin: 0;
+
+  line-height: 1.1;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/*
+========================================================
+  TABLET
+========================================================
+*/
+
+@media (max-width: 900px) {
+
+  .swipe {
+    max-width: 100%;
+  }
+
+  .embla {
+    max-width: 100%;
+
+    padding-block: 40px;
+  }
+
+  /*
+    Las imágenes siguen siendo grandes,
+    pero empiezan a reducirse.
+  */
+  .swipe-card__img {
+    width: clamp(280px, 48vw, 420px);
+  }
+
+  .buttomS {
+    width: 70px;
+  }
+
+  .informacion {
+    min-height: 75px;
+
+    margin: 15px;
+
+    padding: 0 20px;
+
+    font-size: clamp(22px, 4vw, 32px);
+  }
+}
+
+
+/*
+========================================================
+  MÓVIL
+========================================================
+*/
+
+@media (max-width: 600px) {
+
+  .swipe {
+    width: 100%;
+  }
+
+  .container {
+    padding: 0 5px;
+
+    gap: 2px;
+  }
+
+  .embla {
+    /*
+      El carrusel ocupa todo el espacio posible.
+    */
+    width: 100%;
+
+    padding-block: 30px;
+  }
+
+  /*
+    En móvil NO dejamos que la imagen se haga diminuta.
+
+    70vw permite que se adapte al teléfono,
+    pero nunca baja de 220px.
+  */
+  .swipe-card__img {
+    width: clamp(220px, 70vw, 33px);
+
+    padding: 6px;
+  }
+
+  /*
+    Flechas más pequeñas para dejar espacio
+    a la tarjeta.
+  */
+  .buttomS {
+    width: clamp(42px, 12vw, 60px);
+  }
+
+  /*
+    Mantener las escalas, pero ligeramente más
+    suaves para pantallas pequeñas.
+  */
+  .embla__slide--center .embla__slide-inner {
+    transform: scale(1.10);
+  }
+
+  .embla__slide--adj .embla__slide-inner {
+    transform: scale(0.82);
+  }
+
+  .embla__slide--edge .embla__slide-inner,
+  .embla__slide--edge2 .embla__slide-inner {
+    transform: scale(0.68);
+  }
+
+  /*
+    Título.
+  */
+  .informacion {
+    width: calc(100% - 20px);
+
+    min-height: 65px;
+
+    margin: 10px;
+
+    padding: 8px 18px;
+
+    border-radius: 100px;
+
+    font-size: clamp(18px, 5vw, 26px);
+  }
+
+  .informacion p {
+    max-width: 100%;
+  }
+}
+
+
+/*
+========================================================
+  TELÉFONOS PEQUEÑOS
+========================================================
+*/
+
+@media (max-width: 380px) {
+
+  .container {
+    padding: 0 2px;
+  }
+
+  .embla {
+    padding-block: 25px;
+  }
+
+  .swipe-card__img {
+    /*
+      Sigue siendo suficientemente grande.
+    */
+    width: 235px;
+  }
+
+  .buttomS {
+    width: 40px;
+  }
+
+  .embla__slide--center .embla__slide-inner {
+    transform: scale(1.05);
+  }
+
+  .informacion {
+    min-height: 58px;
+
+    margin: 8px;
+
+    padding: 6px 12px;
+
+    font-size: 17px;
+  }
 }

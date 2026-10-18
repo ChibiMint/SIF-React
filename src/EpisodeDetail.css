@@ -1,64 +1,85 @@
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+========================================================= */
+
 .episode-detail {
   width: 100%;
-  max-width: 920px;
-
-  height: auto;
-  min-height: 0;
-
-  margin: 0 auto;
-
+  min-width: 0;
+  min-height: 100%;
   box-sizing: border-box;
-
-  padding: 16px 20px 32px;
-
+  padding: 24px 30px 100px;
   overflow: visible;
 }
 
-.episode-detail__top {
+.episode-detail__container {
   width: 100%;
-  margin-bottom: 16px;
-}
-
-.episode-detail__back {
-  display: inline-flex;
-  color: inherit;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  opacity: 0.85;
-}
-
-.episode-detail__back:hover {
-  opacity: 1;
+  max-width: 1500px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 
-/* =========================
-   CONTENIDO PRINCIPAL
-   ========================= */
+/* =========================================================
+   TÍTULO
+========================================================= */
 
-.episode-detail__layout {
+.episode-detail__header {
   width: 100%;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1fr)
-    360px;
-
-  gap: 20px;
-
-  align-items: start;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
-.episode-detail__main {
-  min-width: 0;
+.episode-detail__page-title {
+  display: inline-block;
+
+  max-width: 100%;
+
+  margin: 0;
+  padding: 10px 28px;
+
+  background-color: #f978a383;
+
+  border: 2px solid white;
+  border-radius: 150px;
+
+  color: white;
+
+  font-family: sans-serif;
+  font-size: clamp(24px, 3vw, 42px);
+  line-height: 1.2;
+  font-weight: 750;
+
+  text-align: center;
+
+  overflow-wrap: anywhere;
+  box-sizing: border-box;
+}
+
+.episode-detail__page-japanese {
+  margin: 12px 0 0;
+
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.4;
+}
+
+.episode-detail__page-romaji {
+  margin: 4px 0 0;
+
+  font-size: clamp(13px, 1.2vw, 17px);
+
+  font-style: italic;
+  opacity: 0.7;
 }
 
 
-/* =========================
-   REPRODUCTOR
-   ========================= */
+/* =========================================================
+   REPRODUCTOR — MODO TEATRO
+========================================================= */
+
+.episode-detail__cinema {
+  width: 100%;
+  margin: 0 0 28px;
+}
 
 .episode-detail__player-wrapper {
   width: 100%;
@@ -67,9 +88,12 @@
 
   background: #000;
 
-  border-radius: 10px;
+  border-radius: 12px;
 
   overflow: hidden;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.25);
 }
 
 .episode-detail__player {
@@ -86,34 +110,74 @@
   height: 100%;
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  color: white;
+
+  text-align: center;
+}
+
+
+/* =========================================================
+   PARTE INFERIOR
+   INFO IZQUIERDA + EPISODIOS DERECHA
+========================================================= */
+
+.episode-detail__below {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, 420px);
+
+  gap: 28px;
+
+  align-items: start;
+}
+
+
+/* =========================================================
+   INFORMACIÓN
+========================================================= */
+
+.episode-detail__info {
+  min-width: 0;
 
   padding: 20px;
 
   box-sizing: border-box;
 
-  color: white;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 14px;
 }
 
 
-/* =========================
-   INFORMACIÓN
-   ========================= */
-
-.episode-detail__info {
-  padding-top: 16px;
-}
+/* =========================================================
+   SERVIDORES
+========================================================= */
 
 .episode-detail__server-buttons {
   display: flex;
+  flex-wrap: wrap;
+
   gap: 8px;
-  margin-bottom: 14px;
+
+  margin-bottom: 16px;
 }
 
 .episode-detail__server {
   border: 0;
+
   border-radius: 18px;
 
   padding: 8px 16px;
@@ -145,16 +209,42 @@
   cursor: not-allowed;
 }
 
+
+/* =========================================================
+   NÚMERO DE EPISODIO
+========================================================= */
+
+.episode-detail__number {
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   TÍTULO DENTRO DE INFORMACIÓN
+========================================================= */
+
 .episode-detail__title {
   margin: 0;
 
-  font-size: 24px;
+  font-size: clamp(20px, 2vw, 30px);
   line-height: 1.25;
 }
 
+
+/* =========================================================
+   JAPONÉS / ROMAJI
+========================================================= */
+
 .episode-detail__japanese {
   margin: 8px 0 0;
+
   font-size: 18px;
+  line-height: 1.4;
 }
 
 .episode-detail__romaji {
@@ -165,28 +255,40 @@
   font-style: italic;
 }
 
+
+/* =========================================================
+   DATOS
+========================================================= */
+
 .episode-detail__meta {
   display: flex;
   flex-wrap: wrap;
 
   gap: 14px;
 
-  margin-top: 14px;
+  margin-top: 16px;
 
   font-size: 14px;
+
   opacity: 0.8;
 }
 
-.episode-detail__description {
-  margin-top: 20px;
 
-  padding-top: 16px;
+/* =========================================================
+   DESCRIPCIÓN
+========================================================= */
+
+.episode-detail__description {
+  margin-top: 22px;
+
+  padding-top: 18px;
 
   border-top: 1px solid rgba(128, 128, 128, 0.3);
 }
 
 .episode-detail__description h2 {
   margin: 0 0 8px;
+
   font-size: 18px;
 }
 
@@ -199,84 +301,125 @@
 }
 
 
-/* =========================
-   LISTA DE EPISODIOS
-   ========================= */
+/* =========================================================
+   EPISODIOS
+========================================================= */
 
-.episode-detail__sidebar {
+.episode-detail__chapters {
   min-width: 0;
 
-  max-height: none;
+  padding: 18px;
 
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 14px;
+}
+
+.episode-detail__chapters-header {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.episode-detail__chapters-header h2 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+.episode-detail__chapters-header p {
+  margin: 4px 0 0;
+
+  font-size: 13px;
+
+  opacity: 0.7;
+}
+
+.episode-detail__chapters-header > span {
+  min-width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 50%;
+
+  background: rgba(128, 128, 128, 0.2);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LISTA DE EPISODIOS
+========================================================= */
+
+.episode-detail__episode-grid {
   display: flex;
   flex-direction: column;
 
-  border-radius: 10px;
+  gap: 6px;
 
-  overflow: hidden;
-}
-
-.episode-detail__sidebar-header {
-  flex-shrink: 0;
-
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 12px 14px;
-
-  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
-}
-
-.episode-detail__sidebar-header h2 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.episode-detail__sidebar-header span {
-  font-size: 13px;
-  opacity: 0.65;
-}
-
-.episode-detail__episode-list {
-  min-height: 0;
-
-  overflow: visible;
-
-  padding: 6px;
+  width: 100%;
 }
 
 .episode-detail__episode {
+  width: 100%;
+
   display: grid;
 
-  grid-template-columns:
-    120px
-    minmax(0, 1fr);
+  grid-template-columns: 110px minmax(0, 1fr);
 
   gap: 10px;
 
   padding: 8px;
 
-  border-radius: 8px;
+  box-sizing: border-box;
+
+  border-radius: 9px;
 
   color: inherit;
   text-decoration: none;
 
   transition:
-    background-color 0.15s ease;
+    background-color 0.15s ease,
+    transform 0.15s ease;
 }
 
 .episode-detail__episode:hover {
   background: rgba(128, 128, 128, 0.15);
+
+  transform: translateX(2px);
 }
 
 .episode-detail__episode--active {
   background: rgba(128, 128, 128, 0.22);
 }
 
+
+/* =========================================================
+   MINIATURA
+========================================================= */
+
 .episode-detail__episode-image {
-  width: 120px;
+  display: block;
+
+  width: 110px;
 
   aspect-ratio: 16 / 9;
 
@@ -290,13 +433,18 @@
 .episode-detail__episode-image--empty {
   display: flex;
 
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   color: white;
 
   font-weight: 700;
 }
+
+
+/* =========================================================
+   INFORMACIÓN DE CADA EPISODIO
+========================================================= */
 
 .episode-detail__episode-info {
   min-width: 0;
@@ -304,11 +452,14 @@
   display: flex;
   flex-direction: column;
 
+  justify-content: center;
+
   gap: 5px;
 }
 
 .episode-detail__episode-number {
   font-size: 13px;
+
   font-weight: 700;
 
   opacity: 0.75;
@@ -323,15 +474,18 @@
   overflow: hidden;
 
   font-size: 14px;
+
   line-height: 1.35;
 }
 
 
-/* =========================
-   ERROR
-   ========================= */
+/* =========================================================
+   ERRORES
+========================================================= */
 
 .episode-detail--error {
+  min-height: 300px;
+
   display: flex;
 
   flex-direction: column;
@@ -341,62 +495,120 @@
 
   gap: 12px;
 
-  padding-top: 40px;
+  padding-top: 50px;
+
+  text-align: center;
 }
 
-.episode-detail--error a {
-  color: inherit;
-}
 
-
-/* =========================
-   PANTALLAS MEDIANAS
-   ========================= */
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 900px) {
+  .episode-detail {
+    padding: 20px 18px 90px;
+  }
 
-  .episode-detail__layout {
+  .episode-detail__below {
     grid-template-columns: 1fr;
   }
 
-  .episode-detail__sidebar {
-    max-height: none;
+  .episode-detail__chapters {
+    width: 100%;
   }
 }
 
 
-/* =========================
-   TELÉFONOS
-   ========================= */
+/* =========================================================
+   MÓVIL
+========================================================= */
 
 @media (max-width: 600px) {
-
   .episode-detail {
-    width: 100%;
-    max-width: 920px;
-
-    padding: 10px 10px 24px;
+    padding: 14px 10px 80px;
   }
 
-  .episode-detail__layout {
-    gap: 14px;
+  .episode-detail__header {
+    margin-bottom: 16px;
+  }
+
+  .episode-detail__page-title {
+    width: 100%;
+
+    padding: 9px 16px;
+
+    border-radius: 30px;
+
+    font-size: clamp(20px, 6vw, 28px);
+  }
+
+  .episode-detail__page-japanese {
+    font-size: 16px;
+  }
+
+  .episode-detail__page-romaji {
+    font-size: 13px;
+  }
+
+  .episode-detail__cinema {
+    margin-bottom: 18px;
   }
 
   .episode-detail__player-wrapper {
-    border-radius: 6px;
+    border-radius: 7px;
   }
 
-  .episode-detail__title {
-    font-size: 20px;
+  .episode-detail__below {
+    gap: 16px;
+  }
+
+  .episode-detail__info {
+    padding: 16px;
+  }
+
+  .episode-detail__chapters {
+    padding: 14px;
   }
 
   .episode-detail__episode {
-    grid-template-columns:
-      110px
-      minmax(0, 1fr);
+    grid-template-columns: 100px minmax(0, 1fr);
   }
 
   .episode-detail__episode-image {
-    width: 110px;
+    width: 100px;
+  }
+}
+
+
+/* =========================================================
+   MÓVIL PEQUEÑO
+========================================================= */
+
+@media (max-width: 380px) {
+  .episode-detail {
+    padding-inline: 7px;
+  }
+
+  .episode-detail__info {
+    padding: 13px;
+  }
+
+  .episode-detail__chapters {
+    padding: 11px;
+  }
+
+  .episode-detail__episode {
+    grid-template-columns: 90px minmax(0, 1fr);
+
+    gap: 8px;
+  }
+
+  .episode-detail__episode-image {
+    width: 90px;
+  }
+
+  .episode-detail__episode-title {
+    font-size: 13px;
   }
 }

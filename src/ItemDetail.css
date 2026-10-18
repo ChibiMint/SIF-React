@@ -1,8 +1,8 @@
 .item-detail {
   width: 100%;
-  height: 1000px;
+  min-height: 100%;
   box-sizing: border-box;
-  padding: 20px 24px 70px;
+  padding: 30px 30px 110px;
   overflow-x: hidden;
 }
 
@@ -12,112 +12,117 @@
   margin: 0 auto;
 }
 
-
-
 /* =========================================
-   CABECERA
-   ========================================= */
+   TÍTULO PRINCIPAL
+   Mismo estilo visual que Swipe
+========================================= */
 
 .item-detail__header {
-  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
 }
 
 .item-detail__header h1 {
   margin: 0;
+  padding: 12px 28px;
+  max-width: 100%;
+  box-sizing: border-box;
 
-  font-size: 32px;
-  line-height: 1.25;
-  font-weight: 750;
+  background-color: #f978a383;
+  border: 2px solid white;
+  border-radius: 150px;
+
+  color: white;
+  font-family: sans-serif;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.2;
+  font-weight: bold;
+  text-align: center;
+
+  overflow-wrap: anywhere;
 }
-
 
 /* =========================================
    LAYOUT
-   ========================================= */
+========================================= */
 
 .item-detail__layout {
   display: grid;
 
+  /*
+    IZQUIERDA:
+    ocupa todo el espacio disponible.
+
+    DERECHA:
+    tamaño similar al sidebar original.
+  */
   grid-template-columns:
     minmax(0, 1fr)
-    minmax(320px, 430px);
+    minmax(280px, 420px);
 
-  gap: 28px;
-
+  gap: 35px;
   align-items: start;
 }
 
-
 /* =========================================
    CONTENIDO PRINCIPAL
-   ========================================= */
+========================================= */
 
 .item-detail__main {
   min-width: 0;
 }
 
-
 /* =========================================
    INFORMACIÓN
-   ========================================= */
+========================================= */
 
 .item-detail__information {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-  grid-template-columns:
-    minmax(180px, 280px)
-    minmax(0, 1fr);
-
-  gap: 28px;
-
+  width: 100%;
   padding: 20px;
 
   border: 1px solid rgba(128, 128, 128, 0.25);
-
   border-radius: 12px;
 
   background: rgba(128, 128, 128, 0.06);
-
   box-sizing: border-box;
 }
 
-
 /* =========================================
    PORTADA
-   ========================================= */
+========================================= */
 
 .item-detail__cover-wrapper {
-  width: 100%;
+  width: min(420px, 100%);
+  margin: 0 auto;
 }
 
 .item-detail__cover {
   display: block;
-
   width: 100%;
   aspect-ratio: 2 / 3;
-
   object-fit: cover;
 
   border-radius: 9px;
-
   background: #222;
 }
 
 .item-detail__cover--empty {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
   color: white;
-
   font-size: 14px;
 }
 
-
 /* =========================================
    INFORMACIÓN BÁSICA
-   ========================================= */
+========================================= */
 
 .item-detail__basic {
   min-width: 0;
@@ -126,34 +131,28 @@
 .item-detail__title {
   margin: 0;
 
-  font-size: 28px;
+  font-size: clamp(23px, 2.5vw, 32px);
   line-height: 1.3;
 }
 
-
 /* =========================================
    CATEGORÍAS
-   ========================================= */
+========================================= */
 
 .item-detail__categories {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 8px;
-
   margin-top: 14px;
 }
 
 .item-detail__category {
   display: inline-flex;
-
   align-items: center;
 
   padding: 5px 10px;
 
   border-radius: 999px;
-
   background: rgba(128, 128, 128, 0.16);
 
   font-size: 12px;
@@ -162,10 +161,9 @@
   opacity: 0.8;
 }
 
-
 /* =========================================
    SECCIONES WIKI
-   ========================================= */
+========================================= */
 
 .item-detail__wiki-section {
   margin-top: 26px;
@@ -173,7 +171,6 @@
 
 .item-detail__wiki-section h2 {
   margin: 0 0 10px;
-
   padding-bottom: 7px;
 
   border-bottom: 1px solid rgba(128, 128, 128, 0.25);
@@ -181,18 +178,15 @@
   font-size: 19px;
 }
 
-
 /* =========================================
    TABLA DE INFORMACIÓN
-   ========================================= */
+========================================= */
 
 .item-detail__info-table {
   display: flex;
-
   flex-direction: column;
 
   border: 1px solid rgba(128, 128, 128, 0.2);
-
   border-radius: 8px;
 
   overflow: hidden;
@@ -200,7 +194,6 @@
 
 .item-detail__info-row {
   display: grid;
-
   grid-template-columns: 110px minmax(0, 1fr);
 
   border-bottom: 1px solid rgba(128, 128, 128, 0.18);
@@ -221,57 +214,46 @@
 
 .item-detail__info-value {
   min-width: 0;
-
   padding: 10px;
 
   font-size: 13px;
-
   word-break: break-word;
 }
 
-
 /* =========================================
    DESCRIPCIÓN
-   ========================================= */
+========================================= */
 
 .item-detail__description {
   margin: 0;
 
   line-height: 1.65;
-
   opacity: 0.8;
 }
 
-
 /* =========================================
-   SIDEBAR DE EPISODIOS
-   ========================================= */
+   CAPS
+   DERECHA
+========================================= */
 
 .item-detail__sidebar {
   min-width: 0;
 
   border: 1px solid rgba(128, 128, 128, 0.25);
-
   border-radius: 12px;
 
   background: rgba(128, 128, 128, 0.06);
 
-  overflow: hidden;
 }
 
-
-/* =========================================
-   CABECERA SIDEBAR
-   ========================================= */
+/* CABECERA */
 
 .item-detail__sidebar-header {
   display: flex;
-
   justify-content: space-between;
   align-items: center;
 
   gap: 15px;
-
   padding: 18px;
 
   border-bottom: 1px solid rgba(128, 128, 128, 0.25);
@@ -279,7 +261,6 @@
 
 .item-detail__sidebar-header h2 {
   margin: 0;
-
   font-size: 21px;
 }
 
@@ -287,58 +268,46 @@
   margin: 4px 0 0;
 
   font-size: 12px;
-
   opacity: 0.6;
 }
 
 .item-detail__episode-count {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
   min-width: 30px;
   height: 30px;
-
   padding: 0 8px;
 
   box-sizing: border-box;
 
   border-radius: 999px;
-
   background: rgba(128, 128, 128, 0.15);
 
   font-size: 12px;
   font-weight: 700;
 }
 
-
 /* =========================================
-   LISTA DE EPISODIOS
-   ========================================= */
+   LISTA DE CAPS
+========================================= */
 
 .item-detail__chapter-list {
   display: flex;
-
   flex-direction: column;
 }
 
-
-/* =========================================
-   TARJETA DE EPISODIO
-   ========================================= */
+/* CAPÍTULO */
 
 .item-detail__chapter {
   display: grid;
-
   grid-template-columns: 130px minmax(0, 1fr);
 
   gap: 12px;
-
   padding: 10px;
 
   color: inherit;
-
   text-decoration: none;
 
   border-bottom: 1px solid rgba(128, 128, 128, 0.18);
@@ -354,24 +323,18 @@
 
 .item-detail__chapter:hover {
   background: rgba(128, 128, 128, 0.13);
-
   transform: translateX(2px);
 }
 
-
-/* =========================================
-   MINIATURA
-   ========================================= */
+/* MINIATURA */
 
 .item-detail__chapter-image-wrapper {
   width: 100%;
-
   aspect-ratio: 16 / 9;
 
   overflow: hidden;
 
   border-radius: 7px;
-
   background: #222;
 }
 
@@ -386,7 +349,6 @@
 
 .item-detail__chapter-image--empty {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -396,18 +358,13 @@
   font-weight: 700;
 }
 
-
-/* =========================================
-   TEXTO DEL EPISODIO
-   ========================================= */
+/* TEXTO */
 
 .item-detail__chapter-content {
   min-width: 0;
 
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
 
   gap: 5px;
@@ -415,9 +372,7 @@
 
 .item-detail__chapter-number {
   font-size: 12px;
-
   font-weight: 700;
-
   opacity: 0.6;
 }
 
@@ -430,14 +385,10 @@
   -webkit-box-orient: vertical;
 
   font-size: 14px;
-
   line-height: 1.4;
 }
 
-
-/* =========================================
-   SIN CAPÍTULOS
-   ========================================= */
+/* SIN CAPÍTULOS */
 
 .item-detail__empty {
   padding: 25px 18px;
@@ -445,20 +396,16 @@
   text-align: center;
 
   font-size: 14px;
-
   opacity: 0.65;
 }
 
-
 /* =========================================
    ERROR
-   ========================================= */
+========================================= */
 
 .item-detail--error {
   display: flex;
-
   flex-direction: column;
-
   justify-content: center;
   align-items: center;
 
@@ -471,7 +418,6 @@
 
 .item-detail--error h1 {
   margin: 0;
-
   font-size: 24px;
 }
 
@@ -479,13 +425,11 @@
   color: inherit;
 }
 
-
 /* =========================================
    TABLET
-   ========================================= */
+========================================= */
 
 @media (max-width: 1000px) {
-
   .item-detail__layout {
     grid-template-columns: 1fr;
   }
@@ -496,9 +440,7 @@
 
   .item-detail__chapter-list {
     display: grid;
-
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .item-detail__chapter {
@@ -506,36 +448,35 @@
 
     border-right: 1px solid rgba(128, 128, 128, 0.18);
   }
-
 }
 
-
 /* =========================================
-   MÓVIL
-   ========================================= */
+   MOBILE
+========================================= */
 
 @media (max-width: 650px) {
-
   .item-detail {
-    padding: 12px 10px 50px;
+    padding: 15px 10px 90px;
+  }
+
+  .item-detail__header {
+    margin-bottom: 20px;
   }
 
   .item-detail__header h1 {
-    font-size: 25px;
+    width: 100%;
+    padding: 10px 18px;
+
+    font-size: clamp(21px, 6vw, 28px);
   }
 
   .item-detail__information {
-    grid-template-columns: 1fr;
-
     gap: 20px;
-
     padding: 14px;
   }
 
   .item-detail__cover-wrapper {
-    width: min(240px, 100%);
-
-    margin: 0 auto;
+    width: min(300px, 100%);
   }
 
   .item-detail__title {
@@ -544,7 +485,6 @@
 
   .item-detail__chapter-list {
     display: flex;
-
     flex-direction: column;
   }
 
@@ -553,21 +493,21 @@
 
     border-right: 0;
   }
-
 }
 
-
 /* =========================================
-   MÓVIL PEQUEÑO
-   ========================================= */
+   PANTALLAS PEQUEÑAS
+========================================= */
 
 @media (max-width: 430px) {
+  .item-detail {
+    padding-inline: 8px;
+  }
 
   .item-detail__chapter {
     grid-template-columns: 105px minmax(0, 1fr);
 
     gap: 9px;
-
     padding: 8px;
   }
 
@@ -578,5 +518,4 @@
   .item-detail__chapter-number {
     font-size: 11px;
   }
-
 }

@@ -30,11 +30,24 @@ function filtrar(items: Item[], grupo: string | null, categoria: string | null):
 }
 
 /** Clase CSS según qué tan lejos está el slide del seleccionado: centro (nombre), vecinos, orillas. */
-function slideRingClass(index: number, selectedIndex: number): 'center' | 'adj' | 'edge'| 'edge2' {
-  const d = Math.abs(index - selectedIndex)
-  if (d === 0) return 'center'
+function slideRingClass(
+  index: number,
+  selectedIndex: number,
+  total: number,
+): 'center' | 'adj' | 'edge' | 'edge2' {
+  if (index === selectedIndex) {
+    return 'center'
+  }
+
+  // Distancia circular para respetar el loop de Embla.
+  const forward = (index - selectedIndex + total) % total
+  const backward = (selectedIndex - index + total) % total
+
+  const d = Math.min(forward, backward)
+
   if (d === 1) return 'adj'
   if (d === 2) return 'edge'
+
   return 'edge2'
 }
 
@@ -153,7 +166,7 @@ export default function Swipe() {
               </div>
             ) : (
               loopSlides.map((it, i) => {
-                const ring = slideRingClass(i, selectedIndex)
+                const ring = slideRingClass(i, selectedIndex, loopSlides.length)
                 return (
                   <div
                     className={`embla__slide embla__slide--${ring}`}

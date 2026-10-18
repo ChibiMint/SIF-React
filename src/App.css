@@ -1,36 +1,107 @@
+/* =========================================================
+   RESET / BASE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+
+  /* Importante:
+     el documento puede crecer en las páginas de detalle */
+  overflow-x: hidden;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* =========================================================
+   ESTILOS GENERALES
+   ========================================================= */
+
 .background {
   background-color: #c76f6f;
 }
 
 .app {
-  background-color: aquamarine;
+  width: 100%;
+  min-width: 0;
   padding: 1rem;
 }
 
 
-/* =========================
+/* =========================================================
    PÁGINA MULTIMEDIA
-   ========================= */
+   ========================================================= */
 
 .multimedia-page {
   width: 100%;
+  min-width: 0;
+  min-height: 100dvh;
+
   box-sizing: border-box;
-  padding-bottom: max(72px, env(safe-area-inset-bottom, 0px));
+
+  padding-bottom:
+    max(
+      72px,
+      calc(56px + env(safe-area-inset-bottom, 0px))
+    );
 }
 
 
-/* =========================
+/* =========================================================
+   CONTENEDOR MULTIMEDIA
+   ========================================================= */
+
+.multimedia-swipe-mount {
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  padding-inline: clamp(4px, 1vw, 8px);
+}
+
+
+/* =========================================================
    CARRUSEL
    /multimedia
-   ========================= */
+
+   ESTA ES LA ÚNICA PÁGINA QUE DEBE ESTAR
+   ENCERRADA EN LA VENTANA.
+   ========================================================= */
 
 .multimedia-page--carousel {
   display: flex;
   flex-direction: column;
 
   width: 100%;
-  height: 100vh;
   height: 100dvh;
+  min-height: 100dvh;
 
   overflow: hidden;
 }
@@ -40,64 +111,89 @@
 
   display: flex;
   flex-direction: column;
+
   justify-content: flex-start;
   align-items: center;
 
   width: 100%;
+  min-width: 0;
   min-height: 0;
 
-  padding-inline: 8px;
+  padding-inline: clamp(4px, 1vw, 8px);
+
   box-sizing: border-box;
 
   overflow: hidden;
 }
 
 
-/* =========================
+/* =========================================================
    PÁGINAS DE DETALLE
-   ========================= */
+   /multimedia/item/...
+   /multimedia/item/.../cap/...
 
+   AQUÍ NO HAY ALTURA FIJA.
+   EL DOCUMENTO PUEDE CRECER Y EL SCROLL
+   LO MANEJA EL NAVEGADOR.
+   ========================================================= */
 .multimedia-page--detail {
   display: block;
 
   width: 100%;
+  height: 100dvh;
+  min-width: 0;
+
   box-sizing: border-box;
 
   /*
-    IMPORTANTE:
-    No ponemos height ni max-height.
-    La página puede crecer según su contenido.
+    El body permanece bloqueado globalmente.
+    Esta página crea su propio scroll.
   */
+  overflow-x: hidden;
+  overflow-y: auto;
 
-  overflow: visible;
+  /*
+    Espacio para la barra inferior.
+  */
+  padding-bottom:
+    max(
+      72px,
+      calc(56px + env(safe-area-inset-bottom, 0px))
+    );
 }
+
+
+/* =========================================================
+   CONTENEDOR DE DETALLE
+   ========================================================= */
 
 .multimedia-page--detail .multimedia-swipe-mount {
+  display: block;
+
   width: 100%;
+  min-width: 0;
 
-  padding-inline: 8px;
-  box-sizing: border-box;
-
-  /*
-    Sin altura fija.
-  */
   min-height: 0;
   height: auto;
+
+  padding-inline: clamp(4px, 1vw, 8px);
+
+  box-sizing: border-box;
 
   overflow: visible;
 }
 
 
-/* =========================
-   WIKIA
-   ========================= */
+/* =========================================================
+   ITEM DETAIL
+   ========================================================= */
 
 .multimedia-page--detail .item-detail {
-  width: 100%;
+  display: block;
 
-  /*
-    El contenido determina la altura.
-  */
+  width: 100%;
+  min-width: 0;
+
   height: auto;
   min-height: 0;
   max-height: none;
@@ -108,12 +204,15 @@
 }
 
 
-/* =========================
-   EPISODIO / REPRODUCTOR
-   ========================= */
+/* =========================================================
+   EPISODE DETAIL
+   ========================================================= */
 
 .multimedia-page--detail .episode-detail {
+  display: block;
+
   width: 100%;
+  min-width: 0;
 
   height: auto;
   min-height: 0;
@@ -125,12 +224,76 @@
 }
 
 
-/* =========================
+/* =========================================================
    RESPONSIVE
-   ========================= */
+   ========================================================= */
 
-@media (max-width: 650px) {
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .multimedia-page--detail .multimedia-swipe-mount {
+    padding-inline: 6px;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   TELÉFONO
+   --------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+  .app {
+    padding: 0;
+  }
+
+  .multimedia-page {
+    padding-bottom:
+      max(
+        68px,
+        calc(54px + env(safe-area-inset-bottom, 0px))
+      );
+  }
+
+  .multimedia-page--detail {
+    padding-bottom:
+      max(
+        90px,
+        calc(70px + env(safe-area-inset-bottom, 0px))
+      );
+  }
+
   .multimedia-page--detail .multimedia-swipe-mount {
     padding-inline: 4px;
   }
+
+}
+
+
+/* ---------------------------------------------------------
+   TELÉFONO PEQUEÑO
+   --------------------------------------------------------- */
+
+@media (max-width: 380px) {
+
+  .multimedia-page {
+    padding-bottom:
+      max(
+        64px,
+        calc(52px + env(safe-area-inset-bottom, 0px))
+      );
+  }
+
+  .multimedia-page--detail {
+    padding-bottom:
+      max(
+        84px,
+        calc(64px + env(safe-area-inset-bottom, 0px))
+      );
+  }
+
 }
