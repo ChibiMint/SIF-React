@@ -1,0 +1,591 @@
+
+.wiki-characters {
+  --wiki-panel: #22222e;
+  --wiki-panel-hover: #2c2c3b;
+  --wiki-border: rgba(255, 255, 255, 0.1);
+  --wiki-text: #f7f4fa;
+  --wiki-muted: #aaa8bb;
+  --wiki-accent: #e6a8d7;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px 28px 0;
+
+  overflow: hidden;
+  box-sizing: border-box;
+  color: var(--wiki-text);
+}
+
+.wiki-characters *,
+.wiki-characters *::before,
+.wiki-characters *::after {
+  box-sizing: border-box;
+}
+
+.wiki-characters button {
+  font: inherit;
+}
+
+/* 1. BARRA DE GRUPOS ARRIBA */
+
+.wiki-groups-nav {
+  flex: 0 0 58px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  min-width: 0;
+  padding: 4px 0 12px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--wiki-accent) transparent;
+}
+
+.wiki-group-tab {
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 8px 18px;
+
+  border: 1px solid var(--wiki-border);
+  border-radius: 9px;
+
+  color: var(--wiki-muted);
+  background: var(--wiki-panel);
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    color 150ms ease,
+    background 150ms ease,
+    border-color 150ms ease;
+}
+
+.wiki-group-tab:hover {
+  border-color: var(--wiki-accent);
+  color: var(--wiki-text);
+  background: var(--wiki-panel-hover);
+}
+
+.wiki-group-tab.is-active {
+  border-color: var(--wiki-accent);
+  color: #211624;
+  background: var(--wiki-accent);
+  font-weight: 700;
+}
+
+/* 2. PERSONAJE EN EL CENTRO */
+
+.wiki-profile {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 10px 0 18px;
+  overflow: hidden;
+}
+
+.wiki-profile-main {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.5fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 60px);
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+.wiki-profile-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-height: 690px;
+  padding: 20px;
+
+  overflow: hidden;
+  border: 1px solid var(--wiki-border);
+  border-radius: 18px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(230, 168, 215, 0.14),
+      transparent 72%
+    ),
+    var(--wiki-panel);
+}
+
+.wiki-profile-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: 650px;
+  object-fit: contain;
+}
+
+.wiki-no-image {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--wiki-accent);
+  font-size: 5rem;
+  font-weight: 700;
+}
+
+.wiki-profile-info {
+  min-width: 0;
+  max-height: 100%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--wiki-accent) transparent;
+}
+
+.wiki-eyebrow {
+  margin: 0 0 10px;
+  color: var(--wiki-accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.wiki-profile-info h1 {
+  margin: 0 0 8px;
+  font-size: clamp(2rem, 3vw, 3.5rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.wiki-profile-info h2 {
+  margin: 0 0 22px;
+  color: var(--wiki-muted);
+  font-size: clamp(1rem, 1.3vw, 1.4rem);
+  font-weight: 400;
+}
+
+.wiki-summary {
+  margin: 18px 0;
+  line-height: 1.7;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+/* Datos del personaje */
+
+.wiki-profile-data {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 22px 0;
+}
+
+.wiki-profile-data > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+
+  border: 1px solid var(--wiki-border);
+  border-radius: 10px;
+  background: var(--wiki-panel);
+}
+
+.wiki-profile-data span {
+  color: var(--wiki-muted);
+  font-size: 0.8rem;
+}
+
+.wiki-profile-data strong {
+  font-size: 0.95rem;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+/* Enlaces */
+
+.wiki-profile-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.wiki-official-link {
+  display: inline-block;
+  padding: 9px 13px;
+  border: 1px solid var(--wiki-border);
+  border-radius: 8px;
+  color: var(--wiki-accent);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.wiki-official-link:hover {
+  border-color: var(--wiki-accent);
+  background: var(--wiki-panel-hover);
+}
+
+/* 3. BARRA DE PERSONAJES ABAJO */
+
+.wiki-bottom-selector {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 12px 0 16px;
+
+  border-top: 1px solid var(--wiki-border);
+}
+
+.wiki-bottom-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.wiki-current-group {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--wiki-text);
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wiki-bottom-count {
+  flex: 0 0 auto;
+  color: var(--wiki-muted);
+  font-size: 0.85rem;
+}
+
+/* Carrusel horizontal */
+
+.wiki-roster-scroll {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 2px 2px 8px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--wiki-accent) transparent;
+}
+
+.wiki-roster-card {
+  flex: 0 0 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-width: 0;
+  min-height: 0;
+  padding: 8px;
+
+  border: 1px solid var(--wiki-border);
+  border-radius: 12px;
+  color: var(--wiki-muted);
+  background: var(--wiki-panel);
+  cursor: pointer;
+
+  transition:
+    border-color 150ms ease,
+    background 150ms ease;
+}
+
+.wiki-roster-card:hover {
+  border-color: var(--wiki-accent);
+  background: var(--wiki-panel-hover);
+}
+
+.wiki-roster-card.is-selected {
+  padding: 7px;
+  border: 2px solid var(--wiki-accent);
+  color: var(--wiki-text);
+  background: var(--wiki-panel-hover);
+}
+
+.wiki-roster-image {
+  display: grid;
+  place-items: center;
+
+  width: 100%;
+  height: 116px;
+  min-height: 0;
+  overflow: hidden;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.wiki-roster-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.wiki-roster-placeholder {
+  color: var(--wiki-accent);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.wiki-roster-name {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  font-size: 0.8rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Carga y errores */
+
+.wiki-status,
+.wiki-empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+.wiki-status p,
+.wiki-empty p {
+  color: var(--wiki-muted);
+}
+
+.wiki-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--wiki-border);
+  border-top-color: var(--wiki-accent);
+  border-radius: 50%;
+  animation: wiki-spin 0.8s linear infinite;
+}
+
+.wiki-error button {
+  padding: 10px 16px;
+  border: 1px solid var(--wiki-border);
+  border-radius: 8px;
+  color: var(--wiki-text);
+  background: var(--wiki-panel);
+  cursor: pointer;
+}
+
+.wiki-characters button:focus-visible,
+.wiki-characters a:focus-visible {
+  outline: 2px solid var(--wiki-accent);
+  outline-offset: 3px;
+}
+
+@keyframes wiki-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pantallas medianas */
+
+@media (max-width: 1400px) {
+  .wiki-characters {
+    padding: 12px 18px 0;
+  }
+
+  .wiki-bottom-selector {
+    flex-basis: 190px;
+  }
+
+  .wiki-roster-card {
+    flex-basis: 100px;
+  }
+
+  .wiki-roster-image {
+    height: 92px;
+  }
+
+  .wiki-profile-data {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Pantallas con poca altura */
+
+@media (max-height: 800px) {
+  .wiki-bottom-selector {
+    flex-basis: 165px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .wiki-roster-image {
+    height: 72px;
+  }
+
+  .wiki-profile-art {
+    max-height: 480px;
+  }
+
+  .wiki-profile-art img {
+    max-height: 450px;
+  }
+
+  .wiki-profile-data {
+    gap: 7px;
+    margin: 12px 0;
+  }
+
+  .wiki-profile-data > div {
+    padding: 8px 10px;
+  }
+}
+
+/* Móviles */
+
+@media (max-width: 700px) {
+  .wiki-characters {
+    padding: 8px 10px 0;
+  }
+
+  .wiki-groups-nav {
+    flex-basis: 48px;
+    gap: 7px;
+    padding-bottom: 8px;
+  }
+
+  .wiki-group-tab {
+    min-height: 32px;
+    padding: 6px 11px;
+    font-size: 0.8rem;
+  }
+
+  .wiki-profile-main {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 0.8fr) minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  .wiki-profile {
+    padding: 8px 0 10px;
+  }
+
+  .wiki-profile-art {
+    padding: 8px;
+  }
+
+  .wiki-profile-art img {
+    max-height: 100%;
+  }
+
+  .wiki-profile-info h1 {
+    font-size: 1.6rem;
+  }
+
+  .wiki-profile-info h2 {
+    margin-bottom: 10px;
+  }
+
+  .wiki-summary {
+    margin: 10px 0;
+    line-height: 1.45;
+  }
+
+  .wiki-profile-data {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    margin: 10px 0;
+  }
+
+  .wiki-profile-data > div {
+    padding: 7px;
+  }
+
+  .wiki-profile-data span,
+  .wiki-profile-data strong {
+    font-size: 0.75rem;
+  }
+
+  .wiki-profile-links {
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .wiki-official-link {
+    padding: 6px 8px;
+    font-size: 0.75rem;
+  }
+
+  .wiki-bottom-selector {
+    flex-basis: 150px;
+    gap: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+  }
+
+  .wiki-roster-card {
+    flex-basis: 74px;
+    gap: 5px;
+    padding: 5px;
+  }
+
+  .wiki-roster-card.is-selected {
+    padding: 4px;
+  }
+
+  .wiki-roster-image {
+    height: 66px;
+  }
+
+  .wiki-roster-name {
+    font-size: 0.68rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wiki-spinner {
+    animation: none;
+  }
+
+  .wiki-roster-scroll {
+    scroll-behavior: auto;
+  }
+
+  .wiki-roster-card,
+  .wiki-group-tab {
+    transition: none;
+  }
+}

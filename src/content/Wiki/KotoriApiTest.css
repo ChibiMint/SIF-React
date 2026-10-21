@@ -1,0 +1,101 @@
+
+.kotori-api {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  color: var(--text-color, #f5f5f5);
+  background: var(--card-background, #202028);
+  border-radius: 16px;
+  box-sizing: border-box;
+}
+
+.kotori-api__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.kotori-api__eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+
+.kotori-api__header h2 {
+  margin: 8px 0;
+}
+
+.kotori-api__avatar {
+  width: 130px;
+  max-width: 35%;
+  height: 160px;
+  object-fit: contain;
+}
+
+.kotori-api__data {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.7fr) minmax(0, 1.3fr);
+  gap: 12px 20px;
+  margin: 24px 0;
+}
+
+.kotori-api__data dt {
+  opacity: 0.7;
+}
+
+.kotori-api__data dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.kotori-api__summary {
+  line-height: 1.7;
+}
+
+.api-success {
+  padding: 12px;
+  border-radius: 8px;
+  background: #183b2c;
+  color: #b6f3d0;
+}
+
+.api-error {
+  color: #ff9696;
+  overflow-wrap: anywhere;
+}
+
+.kotori-api details {
+  margin-top: 24px;
+}
+
+.kotori-api pre {
+  max-height: 400px;
+  overflow: auto;
+  padding: 12px;
+  background: #111116;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.kotori-api a {
+  display: inline-block;
+  margin: 8px 12px 8px 0;
+}
+
+@media (max-width: 520px) {
+  .kotori-api {
+    padding: 16px;
+  }
+
+  .kotori-api__data {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .kotori-api__data dd {
+    margin-bottom: 12px;
+  }
+}

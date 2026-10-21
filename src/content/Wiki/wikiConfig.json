@@ -1,0 +1,62 @@
+
+{
+  "groups": [
+    {
+      "name": "μ's",
+      "label": "μ's",
+      "order": 1,
+      "characters": [
+        "Kotori Minami",
+        "Sonoda Umi",
+        "Toujou Nozomi"
+      ]
+    },
+    {
+      "name": "Aqours",
+      "label": "Aqours",
+      "order": 2,
+      "characters": [
+        "Takami Chika",
+        "Tsushima Yoshiko",
+        "You Watanabe"
+      ]
+    },
+    {
+      "name": "Nijigasaki High School Idol Club",
+      "label": "Nijigasaki",
+      "order": 3,
+      "characters": [
+        "Ayumu Uehara",
+        "Kasumi Nakasu",
+        "Shizuku Osaka"
+      ]
+    }
+  ],
+  "characterDisplay": {
+    "order": [
+      "name",
+      "japanese_name",
+      "summary",
+      "school",
+      "main_unit",
+      "sub_unit",
+      "year",
+      "age",
+      "birthday",
+      "blood",
+      "height",
+      "favorite_food",
+      "least_favorite_food",
+      "hobbies"
+    ],
+    "hidden": [
+      "website_url",
+      "wiki_url",
+      "wikia_url"
+    ]
+  },
+  "sorting": {
+    "mode": "custom",
+    "showUnlistedCharacters": false
+  }
+}
